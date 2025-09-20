@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموزع الإلكتروني</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔬 الموزع الإلكتروني</h1>
+        <p>أدخل العدد الذري للعنصر (عدد الإلكترونات) للحصول على التوزيع الإلكتروني.</p>
+        <div class="input-group">
+            <input type="number" id="atomic-number" placeholder="مثال: 11 للصوديوم" min="1" max="118">
+        </div>
+        <button id="calculate-btn">احسب التوزيع</button>
+
+        <div class="results" id="results-container" style="display:none;">
+            <h3>التوزيع الإلكتروني العادي:</h3>
+            <p id="standard-config"></p>
+
+            <h3>توزيع الأفلاك (Orbital Diagram):</h3>
+            <div id="orbital-diagram"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
