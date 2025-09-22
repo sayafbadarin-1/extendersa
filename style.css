@@ -146,6 +146,18 @@ button:hover {
     margin-top: 15px;
 }
 
+/* ///--- هذا هو الجزء الذي تم تعديله ---/// */
+#orbital-diagram {
+    display: flex;
+    flex-wrap: nowrap;      /* تم التغيير من wrap إلى nowrap */
+    justify-content: center;
+    direction: ltr;
+    margin-top: 25px;
+    overflow-x: auto;       /* تمت إضافة شريط تمرير أفقي عند الحاجة */
+    padding-bottom: 10px;   /* مساحة بسيطة لشريط التمرير */
+}
+/* /////////////////////////////////////// */
+
 .orbital-label {
     font-weight: 500;
     font-size: 1.3em;
