@@ -41,51 +41,56 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
     let orbitalDiagramHTML = '';
     let configurationData = [];
 
+    // --- بناء مصفوفة التوزيع ---
     for (const orbital of orbitalOrder) {
         if (remainingElectrons <= 0) break;
-
         const electronsInOrbital = Math.min(remainingElectrons, orbital.capacity);
-        
-        standardConfig += `${orbital.name}<sup>${electronsInOrbital}</sup> `;
-        orbitalDiagramHTML += generateOrbitalBoxes(orbital.name, orbital.boxes, electronsInOrbital);
-        
         const energyLevel = parseInt(orbital.name.charAt(0));
         const type = orbital.name.charAt(1);
-        configurationData.push({ level: energyLevel, type: type, electrons: electronsInOrbital, name: orbital.name });
         
+        configurationData.push({ level: energyLevel, type: type, electrons: electronsInOrbital });
+        standardConfig += `${orbital.name}<sup>${electronsInOrbital}</sup> `;
+        orbitalDiagramHTML += generateOrbitalBoxes(orbital.name, orbital.boxes, electronsInOrbital);
         remainingElectrons -= electronsInOrbital;
     }
 
-    // --- حساب الدورة، التكافؤ، والمجموعة ---
+    // --- المنطق الجديد والمُحسَّن لحساب الدورة، التكافؤ، والمجموعة ---
     let period = 0;
     let valenceElectrons = 0;
     let group = '';
 
     if (configurationData.length > 0) {
-        // 1. حساب الدورة (أعلى مستوى طاقة)
-        const maxLevel = Math.max(...configurationData.map(item => item.level));
-        period = maxLevel;
+        // 1. حساب الدورة (أعلى مستوى طاقة رئيسي n)
+        period = Math.max(...configurationData.map(item => item.level));
 
-        // 2. حساب إلكترونات التكافؤ
-        valenceElectrons = configurationData
-            .filter(item => item.level === maxLevel)
-            .reduce((sum, item) => sum + item.electrons, 0);
-
-        // 3. حساب المجموعة
+        // 2. تحديد آخر فلك تم ملؤه (s, p, d, f)
         const lastFilled = configurationData[configurationData.length - 1];
         
-        if (lastFilled.type === 's') {
-            group = valenceElectrons.toString();
-        } else if (lastFilled.type === 'p') {
-            group = (valenceElectrons + 10).toString();
-        } else if (lastFilled.type === 'd') {
-            // للعناصر الانتقالية، المجموعة = إلكترونات آخر s + آخر d
-            const last_s = configurationData.find(o => o.level === maxLevel && o.type === 's');
-            const s_electrons = last_s ? last_s.electrons : 0;
-            group = (s_electrons + lastFilled.electrons).toString();
-        } else if (lastFilled.type === 'f') {
-            // عناصر f-block
+        // 3. حساب المجموعة وإلكترونات التكافؤ بناءً على نوع الفلك الأخير
+        if (lastFilled.type === 'f') {
+            // f-block elements (Lanthanides/Actinides)
             group = lastFilled.level === 4 ? 'لانثانيدات' : 'أكتينيدات';
+            valenceElectrons = 'N/A'; // غالبًا ما تكون معقدة وتختلف تعريفاتها
+        } else if (lastFilled.type === 'd') {
+            // d-block elements (Transition Metals)
+            const highestS = configurationData.find(o => o.level === period && o.type === 's');
+            const s_electrons = highestS ? highestS.electrons : 0;
+            valenceElectrons = s_electrons + lastFilled.electrons;
+            group = valenceElectrons.toString();
+        } else {
+            // s-block and p-block elements (Main Group)
+            const valenceShell = configurationData.filter(item => item.level === period);
+            valenceElectrons = valenceShell.reduce((sum, item) => sum + item.electrons, 0);
+            if (lastFilled.type === 's') {
+                group = valenceElectrons.toString();
+            } else if (lastFilled.type === 'p') {
+                group = (valenceElectrons + 10).toString();
+            }
+        }
+        // حالة خاصة للهيليوم
+        if (atomicNumber === 2) {
+            group = '18';
+            valenceElectrons = 2;
         }
     }
     // --- نهاية الحسابات ---
@@ -104,18 +109,14 @@ function generateOrbitalBoxes(name, numBoxes, electrons) {
 
     // Hund's Rule
     for (let i = 0; i < numBoxes && electrons > 0; i++) {
-        if (electrons > 0) {
-            boxesContent[i] += '↑';
-            electrons--;
-        }
+        boxesContent[i] += '↑';
+        electrons--;
     }
 
     // Pauli Exclusion Principle
     for (let i = 0; i < numBoxes && electrons > 0; i++) {
-        if (electrons > 0) {
-            boxesContent[i] += '↓';
-            electrons--;
-        }
+        boxesContent[i] += '↓';
+        electrons--;
     }
     
     for (const content of boxesContent) {
