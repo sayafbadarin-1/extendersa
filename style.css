@@ -117,6 +117,34 @@ button:hover {
     to { opacity: 1; transform: translateX(0); }
 }
 
+/* ///--- تنسيقات القسم الجديد ---/// */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.stat {
+    background: rgba(13, 17, 23, 0.8);
+    border: 1px solid rgba(0, 246, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    flex: 1;
+    text-align: center;
+}
+.stat h4 {
+    color: #a1aab8;
+    font-weight: 500;
+    font-size: 1em;
+    margin-bottom: 8px;
+}
+.stat p {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 2em;
+}
+/* //////////////////////////////////// */
+
 .results h3 {
     color: #ffffff;
     font-weight: 600;
@@ -125,14 +153,8 @@ button:hover {
     margin-bottom: 20px;
 }
 
-#valence-electrons {
-    font-size: 3.5em;
-    font-weight: 700;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    text-align: center;
-    margin: 0 0 25px 0;
-}
+/* إخفاء إلكترونات التكافؤ القديمة */
+#valence-electrons { display: none; }
 
 #standard-config {
     font-size: 1.25em;
@@ -146,17 +168,15 @@ button:hover {
     margin-top: 15px;
 }
 
-/* ///--- هذا هو الجزء الذي تم تعديله ---/// */
 #orbital-diagram {
     display: flex;
-    flex-wrap: nowrap;      /* تم التغيير من wrap إلى nowrap */
+    flex-wrap: nowrap;
     justify-content: center;
     direction: ltr;
     margin-top: 25px;
-    overflow-x: auto;       /* تمت إضافة شريط تمرير أفقي عند الحاجة */
-    padding-bottom: 10px;   /* مساحة بسيطة لشريط التمرير */
+    overflow-x: auto;
+    padding-bottom: 10px;
 }
-/* /////////////////////////////////////// */
 
 .orbital-label {
     font-weight: 500;
@@ -257,14 +277,22 @@ body.light-mode button:hover {
     box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
 }
 
+body.light-mode .stat {
+    background: #fff;
+    border-color: #eef2f7;
+}
+
+body.light-mode .stat h4 {
+    color: #777;
+}
+
+body.light-mode .stat p {
+    color: #1a2c50;
+}
+
 body.light-mode .results h3 {
     color: #1a2c50;
     border-bottom-color: #4a90e2;
-}
-
-body.light-mode #valence-electrons {
-    color: #28a745;
-    text-shadow: none;
 }
 
 body.light-mode #standard-config {
