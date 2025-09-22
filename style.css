@@ -1,10 +1,10 @@
-/* --- 1. استيراد خط جديد من جوجل --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+/* --- 1. استيراد خط "Cairo" الجديد من جوجل --- */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
 
 /* --- 2. إعدادات أساسية وتنسيق الجسم --- */
 body {
-    font-family: 'Poppins', sans-serif; /* تطبيق الخط الجديد */
-    background-color: #f4f7fc; /* لون خلفية أفتح وأكثر راحة للعين */
+    font-family: 'Cairo', sans-serif; /* تطبيق الخط الجديد */
+    background-color: #f4f7fc;
     color: #333;
     display: flex;
     flex-direction: column;
@@ -19,8 +19,8 @@ body {
 .container {
     background-color: #ffffff;
     padding: 40px;
-    border-radius: 15px; /* زوايا أكثر استدارة */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* ظل أنعم وأكثر عمقًا */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     width: 90%;
     max-width: 650px;
     text-align: center;
@@ -28,8 +28,8 @@ body {
 }
 
 h1 {
-    color: #1a2c50; /* لون أزرق داكن */
-    font-weight: 700; /* وزن خط أثقل للعنوان الرئيسي */
+    color: #1a2c50;
+    font-weight: 700;
     margin-bottom: 15px;
 }
 
@@ -50,17 +50,18 @@ input[type="number"] {
     border-radius: 8px;
     font-size: 16px;
     text-align: center;
-    transition: all 0.3s ease; /* تأثير انتقال ناعم */
+    transition: all 0.3s ease;
+    font-family: 'Cairo', sans-serif; /* التأكد من أن الخط يطبق هنا أيضًا */
 }
 
 input[type="number"]:focus {
     outline: none;
-    border-color: #4a90e2; /* تغيير لون الحدود عند التركيز */
+    border-color: #4a90e2;
     box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
 }
 
 button {
-    background-image: linear-gradient(to right, #4a90e2 0%, #2b69b1 100%); /* تدرج لوني جذاب */
+    background-image: linear-gradient(to right, #4a90e2 0%, #2b69b1 100%);
     color: white;
     padding: 15px 35px;
     border: none;
@@ -70,10 +71,11 @@ button {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+    font-family: 'Cairo', sans-serif; /* التأكد من أن الخط يطبق هنا أيضًا */
 }
 
 button:hover {
-    transform: translateY(-3px); /* تأثير رفع بسيط عند المرور */
+    transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
 }
 
