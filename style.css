@@ -1,106 +1,132 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 0;
 }
 
 .container {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
 }
 
 h1 {
-  color: #0056b3;
-  margin-bottom: 20px;
+    color: #0056b3;
+    margin-bottom: 20px;
 }
 
 .input-group {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 input[type="number"] {
-  width: 80%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: center;
+    width: 80%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
 }
 
 button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .results {
-  margin-top: 30px;
-  text-align: right;
+    margin-top: 30px;
+    text-align: right;
 }
 
 .results h3 {
-  border-bottom: 2px solid #007bff;
-  padding-bottom: 5px;
-  margin-bottom: 15px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+#valence-electrons {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #28a745;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.results hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
 }
 
 #standard-config {
-  font-size: 1.2em;
-  letter-spacing: 2px;
-  direction: ltr; /* To display configuration correctly */
-  text-align: center;
-  background-color: #e9ecef;
-  padding: 10px;
-  border-radius: 5px;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    direction: ltr;
+    text-align: center;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    word-wrap: break-word;
 }
 
 #orbital-diagram {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  direction: ltr; /* Orbitals should be LTR */
-  margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    direction: ltr;
+    margin-top: 20px;
 }
 
 .subshell {
-  display: flex;
-  align-items: center;
-  margin: 5px 10px;
+    display: flex;
+    align-items: center;
+    margin: 5px 10px;
 }
 
 .orbital-label {
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-right: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-right: 10px;
 }
 
 .orbital {
-  border: 1px solid #333;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 2px;
-  font-size: 1.2em;
-  font-weight: bold;
+    border: 1px solid #333;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    margin-top: 25px;
+    padding-bottom: 20px;
+    color: #777;
+    font-size: 1em;
 }
