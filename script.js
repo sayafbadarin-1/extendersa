@@ -50,21 +50,49 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
         orbitalDiagramHTML += generateOrbitalBoxes(orbital.name, orbital.boxes, electronsInOrbital);
         
         const energyLevel = parseInt(orbital.name.charAt(0));
-        configurationData.push({ level: energyLevel, electrons: electronsInOrbital });
+        const type = orbital.name.charAt(1);
+        configurationData.push({ level: energyLevel, type: type, electrons: electronsInOrbital, name: orbital.name });
         
         remainingElectrons -= electronsInOrbital;
     }
 
+    // --- حساب الدورة، التكافؤ، والمجموعة ---
+    let period = 0;
     let valenceElectrons = 0;
+    let group = '';
+
     if (configurationData.length > 0) {
+        // 1. حساب الدورة (أعلى مستوى طاقة)
         const maxLevel = Math.max(...configurationData.map(item => item.level));
-        
+        period = maxLevel;
+
+        // 2. حساب إلكترونات التكافؤ
         valenceElectrons = configurationData
             .filter(item => item.level === maxLevel)
             .reduce((sum, item) => sum + item.electrons, 0);
+
+        // 3. حساب المجموعة
+        const lastFilled = configurationData[configurationData.length - 1];
+        
+        if (lastFilled.type === 's') {
+            group = valenceElectrons.toString();
+        } else if (lastFilled.type === 'p') {
+            group = (valenceElectrons + 10).toString();
+        } else if (lastFilled.type === 'd') {
+            // للعناصر الانتقالية، المجموعة = إلكترونات آخر s + آخر d
+            const last_s = configurationData.find(o => o.level === maxLevel && o.type === 's');
+            const s_electrons = last_s ? last_s.electrons : 0;
+            group = (s_electrons + lastFilled.electrons).toString();
+        } else if (lastFilled.type === 'f') {
+            // عناصر f-block
+            group = lastFilled.level === 4 ? 'لانثانيدات' : 'أكتينيدات';
+        }
     }
+    // --- نهاية الحسابات ---
 
     // عرض النتائج
+    document.getElementById('period-number').textContent = period;
+    document.getElementById('group-number').textContent = group;
     document.getElementById('valence-electrons').textContent = valenceElectrons;
     document.getElementById('standard-config').innerHTML = standardConfig.trim();
     document.getElementById('orbital-diagram').innerHTML = orbitalDiagramHTML;
