@@ -9,20 +9,24 @@
 <body>
 
     <div class="container">
+        <button id="theme-toggle" title="تبديل المظهر">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+        </button>
+
         <h1>🔬 الموزع الإلكتروني</h1>
-        <p>أدخل العدد الذري للعنصر (عدد الإلكترونات) للحصول على التوزيع الإلكتروني.</p>
+        <p>أدخل العدد الذري للعنصر للحصول على توزيعه الإلكتروني الكامل.</p>
+        
         <div class="input-group">
             <input type="number" id="atomic-number" placeholder="مثال: 11 للصوديوم" min="1" max="118">
         </div>
+        
         <button id="calculate-btn">احسب التوزيع</button>
 
         <div class="results" id="results-container" style="display:none;">
-            
             <h3>إلكترونات التكافؤ:</h3>
             <p id="valence-electrons"></p>
             
-            <hr>
-
             <h3>التوزيع الإلكتروني العادي:</h3>
             <p id="standard-config"></p>
             
