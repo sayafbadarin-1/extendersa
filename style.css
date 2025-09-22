@@ -117,7 +117,6 @@ button:hover {
     to { opacity: 1; transform: translateX(0); }
 }
 
-/* ///--- تنسيقات القسم الجديد ---/// */
 .stats-container {
     display: flex;
     justify-content: space-around;
@@ -143,7 +142,13 @@ button:hover {
     font-weight: 700;
     font-size: 2em;
 }
-/* //////////////////////////////////// */
+
+/* تمييز لون إلكترونات التكافؤ */
+#valence-electrons {
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
 
 .results h3 {
     color: #ffffff;
@@ -152,9 +157,6 @@ button:hover {
     padding-bottom: 8px;
     margin-bottom: 20px;
 }
-
-/* إخفاء إلكترونات التكافؤ القديمة */
-#valence-electrons { display: none; }
 
 #standard-config {
     font-size: 1.25em;
@@ -282,12 +284,14 @@ body.light-mode .stat {
     border-color: #eef2f7;
 }
 
-body.light-mode .stat h4 {
-    color: #777;
-}
+body.light-mode .stat h4 { color: #777; }
 
-body.light-mode .stat p {
-    color: #1a2c50;
+body.light-mode .stat p { color: #1a2c50; }
+
+/* تمييز لون إلكترونات التكافؤ في المظهر المضيء */
+body.light-mode #valence-electrons {
+    color: #28a745;
+    text-shadow: none;
 }
 
 body.light-mode .results h3 {
