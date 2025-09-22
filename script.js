@@ -1,3 +1,17 @@
+// انتظر حتى يتم تحميل الصفحة بالكامل
+document.addEventListener('DOMContentLoaded', () => {
+    // احصل على زر التبديل وجسم الصفحة
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // عند الضغط على الزر
+    themeToggle.addEventListener('click', () => {
+        // قم بإضافة أو إزالة كلاس 'light-mode' من جسم الصفحة
+        body.classList.toggle('light-mode');
+    });
+});
+
+// الكود الخاص بحساب التوزيع الإلكتروني
 document.getElementById('calculate-btn').addEventListener('click', function() {
     const atomicNumberInput = document.getElementById('atomic-number');
     const atomicNumber = parseInt(atomicNumberInput.value);
@@ -50,7 +64,7 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
             .reduce((sum, item) => sum + item.electrons, 0);
     }
 
-    // Display results
+    // عرض النتائج
     document.getElementById('valence-electrons').textContent = valenceElectrons;
     document.getElementById('standard-config').innerHTML = standardConfig.trim();
     document.getElementById('orbital-diagram').innerHTML = orbitalDiagramHTML;
