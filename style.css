@@ -1,4 +1,4 @@
-/* --- 1. استيراد الخط الجديد --- */
+/* --- 1. استيراد الخط --- */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
 
 /* --- إعدادات أساسية (CSS Reset) --- */
@@ -8,10 +8,10 @@
     box-sizing: border-box;
 }
 
-/* --- 2. تصميم الجسم والخلفية --- */
+/* --- 2. التصميم الأساسي (المظهر المظلم هو الافتراضي) --- */
 body {
     font-family: 'IBM Plex Sans Arabic', sans-serif;
-    background-color: #0d1117; /* خلفية داكنة جداً */
+    background-color: #0d1117;
     background-image: 
         radial-gradient(circle at 15% 50%, rgba(0, 246, 255, 0.1), transparent 40%),
         radial-gradient(circle at 85% 30%, rgba(74, 144, 226, 0.1), transparent 40%);
@@ -22,14 +22,16 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    overflow-x: hidden; /* منع الحركة الأفقية */
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* --- 3. تصميم الحاوية الرئيسية (تأثير الزجاج) --- */
 .container {
-    background: rgba(28, 37, 54, 0.6); /* لون شبه شفاف */
+    position: relative;
+    background: rgba(28, 37, 54, 0.6);
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px); /* لدعم متصفح سفاري */
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(0, 246, 255, 0.2);
     border-radius: 20px;
     padding: 40px;
@@ -37,7 +39,8 @@ body {
     max-width: 700px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1s ease-out; /* حركة الدخول */
+    animation: fadeIn 1s ease-out;
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 @keyframes fadeIn {
@@ -49,7 +52,7 @@ h1 {
     color: #ffffff;
     font-weight: 700;
     font-size: 2.5em;
-    text-shadow: 0 0 10px rgba(0, 246, 255, 0.5); /* تأثير توهج للنص */
+    text-shadow: 0 0 10px rgba(0, 246, 255, 0.5);
     margin-bottom: 15px;
 }
 
@@ -69,13 +72,11 @@ input[type="number"] {
     text-align: center;
     background-color: rgba(13, 17, 23, 0.7);
     color: #ffffff;
-    transition: all 0.3s ease;
     font-family: 'IBM Plex Sans Arabic', sans-serif;
+    transition: all 0.3s ease;
 }
 
-input[type="number"]::placeholder {
-    color: #888;
-}
+input[type="number"]::placeholder { color: #888; }
 
 input[type="number"]:focus {
     outline: none;
@@ -108,7 +109,7 @@ button:hover {
 .results {
     margin-top: 40px;
     text-align: right;
-    animation: slideIn 0.7s ease-out; /* حركة ظهور النتائج */
+    animation: slideIn 0.7s ease-out;
 }
 
 @keyframes slideIn {
@@ -127,14 +128,10 @@ button:hover {
 #valence-electrons {
     font-size: 3.5em;
     font-weight: 700;
-    color: #ffd700; /* لون ذهبي مميز */
+    color: #ffd700;
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
     text-align: center;
     margin: 0 0 25px 0;
-}
-
-.results hr {
-    display: none; /* إخفاء الخط التقليدي */
 }
 
 #standard-config {
@@ -147,14 +144,6 @@ button:hover {
     word-wrap: break-word;
     border: 1px solid rgba(0, 246, 255, 0.2);
     margin-top: 15px;
-}
-
-#orbital-diagram {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    direction: ltr;
-    margin-top: 25px;
 }
 
 .orbital-label {
@@ -188,3 +177,103 @@ footer {
     font-size: 1em;
     font-weight: 300;
 }
+
+/* --- 7. تصميم زر تبديل المظهر --- */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(28, 37, 54, 0.5);
+    border: 1px solid rgba(0, 246, 255, 0.2);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    transition: all 0.4s ease;
+}
+
+#theme-toggle:hover {
+    background: rgba(28, 37, 54, 0.8);
+    border-color: #00f6ff;
+}
+
+#theme-toggle .sun { display: none; }
+
+/* --- 8. تصميم المظهر المضيء (Light Mode) --- */
+body.light-mode {
+    background-color: #f4f7fc;
+    background-image: none;
+    color: #333;
+}
+
+body.light-mode .container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #eef2f7;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode h1 {
+    color: #1a2c50;
+    text-shadow: none;
+}
+
+body.light-mode .container > p { color: #777; }
+
+body.light-mode input[type="number"] {
+    background-color: #fff;
+    color: #333;
+    border-color: #ddd;
+}
+
+body.light-mode input[type="number"]:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+}
+
+body.light-mode button {
+    background-image: linear-gradient(to right, #4a90e2 0%, #2b69b1 100%);
+    color: white;
+    border: none;
+    text-shadow: none;
+}
+
+body.light-mode button:hover {
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+}
+
+body.light-mode .results h3 {
+    color: #1a2c50;
+    border-bottom-color: #4a90e2;
+}
+
+body.light-mode #valence-electrons {
+    color: #28a745;
+    text-shadow: none;
+}
+
+body.light-mode #standard-config {
+    background-color: #f4f7fc;
+    border-color: #eef2f7;
+    color: #333;
+}
+
+body.light-mode .orbital-label { color: #555; }
+
+body.light-mode .orbital {
+    border-color: #ccc;
+    color: #333;
+}
+
+body.light-mode footer { color: #999; }
+
+body.light-mode #theme-toggle {
+    background: #fff;
+    border-color: #eee;
+}
+
+body.light-mode #theme-toggle .sun { display: inline; }
+body.light-mode #theme-toggle .moon { display: none; }
